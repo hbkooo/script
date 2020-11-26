@@ -60,7 +60,8 @@ class Compress_Pic_or_Video(object):
         #     return True
 
 if __name__ == "__main__":
-    b = sys.argv[1:]	#测试压缩
+    #[文件所在的目录 输入的文件名字 输出的文件名字]
+    b = sys.argv[1:]
     savevideo = Compress_Pic_or_Video(b[0],b[1],b[2])
     print(savevideo.Compress_Video())
 
