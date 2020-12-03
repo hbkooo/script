@@ -157,6 +157,14 @@ def convert_yolotxt_to_vocxml(size, box):
     ymin = int(y+1-h/2)
     xmax = int(x+1+w/2)
     ymax = int(y+1+h/2)
+    if xmin < 0:
+        xmin = 0
+    if ymin < 0:
+        ymin = 0
+    if xmax >= W:
+        xmax = W-1
+    if ymax >= H:
+        ymax = H-1
     return [xmin, ymin, xmax, ymax]
 
 def convert_txt_label(txt_file_name):
