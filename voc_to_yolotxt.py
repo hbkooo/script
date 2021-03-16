@@ -21,12 +21,12 @@ txt_save_path = 'labels'                            # 生成的yolo txt标签存
 ####################################################################################
 
 # voc 格式转化为yolo的txt格式
-# size：[w, h], box: [xmin, ymin, xmax, ymax]
+# size：[w, h], box: [xmin, xmax, ymin, ymax]
 def convert_vocxml_to_yolotxt(size, box):
     '''
     输入：
         size：图片宽和高，格式[w, h]
-        box: 坐标list，格式为[xmin, ymin, xmax, ymax]
+        box: 坐标list，格式为[xmin, xmax, ymin, ymax]
     '''
     dw = 1./(size[0])
     dh = 1./(size[1])
@@ -71,7 +71,7 @@ def convert_annotation(xml_file_name):
             continue
         cls_id = classes.index(cls)
         xmlbox = obj.find('bndbox')
-        b = (float(xmlbox.find('xmin').text), float(xmlbox.find('ymin').text), float(xmlbox.find('xmax').text), float(xmlbox.find('ymax').text))
+        b = (float(xmlbox.find('xmin').text), float(xmlbox.find('xmax').text), float(xmlbox.find('ymin').text), float(xmlbox.find('ymax').text))
         bb = convert_vocxml_to_yolotxt((w,h), b)
         # print(bb)
         out_file.write(str(cls_id) + " " + " ".join([str(a) for a in bb]) + '\n')
